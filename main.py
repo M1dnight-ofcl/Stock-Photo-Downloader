@@ -1,7 +1,7 @@
-import pvleopard as pv, tqdm as t, os, downloader as d, shutil as s
+import pvleopard as pv, tqdm as t, os, shutil as s
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.2"
+vnum = "1.3"
 
 x = open("assets/logo.txt", "r")
 print(x.read())
