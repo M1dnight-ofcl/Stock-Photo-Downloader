@@ -1,7 +1,7 @@
 import pvleopard as pv, tqdm as t, os, downloader as d, shutil as s
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.0"
+vnum = "1.1"
 
 x = open("assets/logo.txt", "r")
 print(x.read())
