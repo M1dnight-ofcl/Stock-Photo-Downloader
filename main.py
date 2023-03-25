@@ -1,7 +1,7 @@
 import pvleopard as pv, tqdm as t, os, shutil as s, blacklist, fileScan as fs
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.5.3"
+vnum = "1.5.4"
 
 x = open("assets/logo.txt", "r")
 print(x.read())
@@ -20,6 +20,14 @@ except:
 for i in t.tqdm(range(0, 1), desc ="retrieving pvleopard access key"):
   lp = pv.create("+K4flsmR4HwbiKOUGOeN4KyvNs5wV20EgOEiBaHbcYUImIwrVrubKQ==")
 # os.environ['IMAGEIO_FFMPEG_EXE'] = 'ffmpeg'
+try:
+  s.rmtree("output")
+  os.mkdir("output")
+except:
+  try:
+    os.mkdir("output")
+  except:
+    print("[INFO] 'output' directory exists; skipping creation...")
 ogVid = input("What video what you like to download stock images for?\n")
 
 try:
@@ -71,4 +79,4 @@ try:
   fs.checkFiles("output")
   print("\n[INFO] script finished\nplease note that the module used downloads 4 google images before it downloads the requested stock photo. the requested photo is the fifth one, skip the others. you may also need to refresh to see the changes.")
 except Exception as e:
-  print("[ERROR] invalid input\nmore info:\n" + str(e))
+  print("[ERROR] ", str(e))
