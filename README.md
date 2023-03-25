@@ -17,12 +17,9 @@ just uploaded. Then wait for the sacript to finish. It take
 a little to run.
 
 # Important Info [READ!!]
-It will download google ui elements too, for some reason. I 
-tried to delete the using the 'os' module, but it didn't work.
-You're requested image should be the fifth one. ALSO: there
-will be some images that don't return results. Those are just
-words that didn't get a result one search, maybe because it just
-doesn't have stock photos.
+Some images may not have returned valid results. It will display
+them as 'unable to open'. you can easily tell which is which when
+browsing the output folder. delete these files!!
 
 I also made a video about this! It will be uploaded soon, so stay
 tuned for that!
