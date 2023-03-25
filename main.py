@@ -46,10 +46,8 @@ try:
   ie = 0
   try:
     print("[INFO] wiping downloads folder...")
-    try:
-      s.rmtree("simple_images")
-    except:
-      s.rmtree("output")
+    s.rmtree("output/")
+    os.mkdir("output/")
   except:
     print("[INFO] downloads folder non-existant, skipping deletion...")
   for rep in all:
@@ -57,11 +55,13 @@ try:
     try:
       for i in t.tqdm(range(0, 1), desc = "[INFO] downloading '" + query + "' " + str(ie) + "/" + str(len(all))):
         response().download(query, 5)
+      s.move("simple_images/" + query + "/" + query + "_5.jpg", "output/" + query + "_5.jpg")
+      os.rename("output/" + query + "_5.jpg", "output/" + query + ".jpg")
       ie = ie + 1
     except:
       print("[INFO] '" + query + "' already downloaded or had error downloading " + str(ie) + "/" + str(len(all)))
       ie = ie + 1
-  os.rename("simple_images", "output")
+  s.rmtree("simple_images")
   print("\n[INFO] script finished\nplease note that the module used downloads 4 google images before it downloads the requested stock photo. the requested photo is the fifth one, skip the others. you may also need to refresh to see the changes.")
 except:
   print("[ERROR] invalid input")
