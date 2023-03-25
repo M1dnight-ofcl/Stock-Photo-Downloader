@@ -16,15 +16,6 @@ type in a file name. Just type in the name of the video you
 just uploaded. Then wait for the sacript to finish. It take
 a little to run.
 
-# Important Info [READ!!]
-Some images may not have returned valid results. It will display
-them as 'unable to open'. you can easily tell which is which when
-browsing the output folder. delete these files!!
-
-I also made a video about this! It will be uploaded soon, so stay
-tuned for that!
-[https://www.youtube.com/channel/UCS0_F7rDhSS2hG5UqZlRp0Q]
-
 # Error Handling
 It has errors! Yippee, my nightmares...
 If it gives the error:
@@ -33,3 +24,7 @@ simple_image_download not found
 Just pip install it again. it does that sometimes.
 Yeah... that's all the errors I found. If you have more, please
 email: [m1dnightgmrofficial@gmail.com]
+
+# Other Stuff
+I'm gonna make a vid about it. Here's my channel:
+[https://www.youtube.com/channel/UCS0_F7rDhSS2hG5UqZlRp0Q]

@@ -1,7 +1,7 @@
-import pvleopard as pv, tqdm as t, os, shutil as s, blacklist
+import pvleopard as pv, tqdm as t, os, shutil as s, blacklist, fileScan as fs
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.5"
+vnum = "1.5.2"
 
 x = open("assets/logo.txt", "r")
 print(x.read())
@@ -66,6 +66,9 @@ try:
         print("[INFO] '" + query + "' already downloaded or had error downloading " + str(ie) + "/" + str(len(all)))
         ie = ie + 1
   s.rmtree("simple_images")
+  os.remove("exportAudio.mp3")
+  os.remove("exportedCaption.txt")
+  fs.checkFiles("output")
   print("\n[INFO] script finished\nplease note that the module used downloads 4 google images before it downloads the requested stock photo. the requested photo is the fifth one, skip the others. you may also need to refresh to see the changes.")
 except Exception as e:
   print("[ERROR] invalid input\nmore info:\n" + str(e))
