@@ -13,7 +13,7 @@ urllib3 = "^1.26.12"
 moviepy = "1.0.3"
 pvleopard = "1.1.5"
 ffmpeg = "1.4"
-google_images_download = "^2.8.0"
+getkey = "^0.6.5"
 
 [tool.poetry.dev-dependencies]
 debugpy = "^1.6.2"

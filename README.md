@@ -24,3 +24,12 @@ browsing the output folder. delete these files!!
 I also made a video about this! It will be uploaded soon, so stay
 tuned for that!
 [https://www.youtube.com/channel/UCS0_F7rDhSS2hG5UqZlRp0Q]
+
+# Error Handling
+It has errors! Yippee, my nightmares...
+If it gives the error:
+simple_image_download not found
+
+Just pip install it again. it does that sometimes.
+Yeah... that's all the errors I found. If you have more, please
+email: [m1dnightgmrofficial@gmail.com]

@@ -1,7 +1,7 @@
-import pvleopard as pv, tqdm as t, os, shutil as s
+import pvleopard as pv, tqdm as t, os, shutil as s, blacklist
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.4.2"
+vnum = "1.5"
 
 x = open("assets/logo.txt", "r")
 print(x.read())
@@ -30,6 +30,7 @@ try:
   except:
     print("[INFO] 'exportAudio' non-existant; skipping deletion...")
   video.audio.write_audiofile("exportAudio.mp3")
+  blacklist.script()
   for i in t.tqdm(range(0, 1), desc ="getting video captions"):
     transcript, words = lp.process_file("exportAudio.mp3")
   for i in t.tqdm(range(0, 1), desc ="writing video captions to 'exportedCaption.txt'"):
@@ -52,16 +53,19 @@ try:
     print("[INFO] downloads folder non-existant, skipping deletion...")
   for rep in all:
     query = rep + " stock photo"
-    try:
-      for i in t.tqdm(range(0, 1), desc = "[INFO] downloading '" + query + "' " + str(ie) + "/" + str(len(all))):
-        response().download(query, 5)
-      s.move("simple_images/" + query + "/" + query + "_5.jpg", "output/" + query + "_5.jpg")
-      os.rename("output/" + query + "_5.jpg", "output/" + query + ".jpg")
-      ie = ie + 1
-    except:
-      print("[INFO] '" + query + "' already downloaded or had error downloading " + str(ie) + "/" + str(len(all)))
-      ie = ie + 1
+    if rep.capitalize() in blacklist.list:
+      print("[INFO] '" + query + "' was found in blacklist")
+    else:
+      try:
+        for i in t.tqdm(range(0, 1), desc = "[INFO] downloading '" + query + "' " + str(ie) + "/" + str(len(all))):
+          response().download(query, 5)
+        s.move("simple_images/" + query + "/" + query + "_5.jpg", "output/" + query + "_5.jpg")
+        os.rename("output/" + query + "_5.jpg", "output/" + query + ".jpg")
+        ie = ie + 1
+      except:
+        print("[INFO] '" + query + "' already downloaded or had error downloading " + str(ie) + "/" + str(len(all)))
+        ie = ie + 1
   s.rmtree("simple_images")
   print("\n[INFO] script finished\nplease note that the module used downloads 4 google images before it downloads the requested stock photo. the requested photo is the fifth one, skip the others. you may also need to refresh to see the changes.")
-except:
-  print("[ERROR] invalid input")
+except Exception as e:
+  print("[ERROR] invalid input\nmore info:\n" + str(e))
