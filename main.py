@@ -1,12 +1,12 @@
 import pvleopard as pv, tqdm as t, os, shutil as s, blacklist, fileScan as fs
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.5.2"
+vnum = "1.5.3"
 
 x = open("assets/logo.txt", "r")
 print(x.read())
 x.close()
-print("\n current version: " + vnum + "\n")
+print("\ncurrent version: " + vnum + "\n")
 
 for i in t.tqdm(range(0, 1), desc ="creating 'simple_image_download' object"):
   response = simp.simple_image_download
