@@ -1,7 +1,7 @@
-import pvleopard as pv, tqdm as t, os, shutil as s, blacklist, fileScan as fs
+import pvleopard as pv, tqdm as t, os, shutil as s, scripts.blacklist as blacklist, scripts.fileScan as fs, scripts.spellCheck as sc
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.5.4"
+vnum = "1.6"
 
 x = open("assets/logo.txt", "r")
 print(x.read())
@@ -46,6 +46,7 @@ try:
       for word in words:
         final = "%s " % (word.word)
         f.write(final)
+  final = sc.check(final)
   print("[WARNING] speech to text may be inaccurate. it may run into errors.\nif you are unhappy with an image downloaded, you may download your own.")
   print("FINAL TRANSCRIPTION:\n" + open("exportedCaption.txt", "r").read())
   cap = open("exportedCaption.txt", "r").read()
@@ -70,8 +71,8 @@ try:
         s.move("simple_images/" + query + "/" + query + "_5.jpg", "output/" + query + "_5.jpg")
         os.rename("output/" + query + "_5.jpg", "output/" + query + ".jpg")
         ie = ie + 1
-      except:
-        print("[INFO] '" + query + "' already downloaded or had error downloading " + str(ie) + "/" + str(len(all)))
+      except Exception as e:
+        print("[INFO] " + str(e) + " " + str(ie) + "/" + str(len(all)))
         ie = ie + 1
   s.rmtree("simple_images")
   os.remove("exportAudio.mp3")
