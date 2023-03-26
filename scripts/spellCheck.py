@@ -2,5 +2,5 @@ from gingerit.gingerit import GingerIt
 
 def check(msg):
   global parser
-  parser = GingerIt()
+  gi = GingerIt()
   parser.parse(msg)

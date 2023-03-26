@@ -1,7 +1,7 @@
 import pvleopard as pv, tqdm as t, os, shutil as s, scripts.blacklist as blacklist, scripts.fileScan as fs, scripts.spellCheck as sc
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.6"
+vnum = "1.6.2"
 
 x = open("assets/logo.txt", "r")
 print(x.read())
@@ -21,13 +21,16 @@ for i in t.tqdm(range(0, 1), desc ="retrieving pvleopard access key"):
   lp = pv.create("+K4flsmR4HwbiKOUGOeN4KyvNs5wV20EgOEiBaHbcYUImIwrVrubKQ==")
 # os.environ['IMAGEIO_FFMPEG_EXE'] = 'ffmpeg'
 try:
+  print("[INFO] clearing output folder...")
   s.rmtree("output")
   os.mkdir("output")
 except:
+  print("[INFO] output clear failed, trying to create new...")
   try:
+    print("[INFO] output folder created")
     os.mkdir("output")
   except:
-    print("[INFO] 'output' directory exists; skipping creation...")
+    print("[INFO] output folder wipe failed, skiping step...")
 ogVid = input("What video what you like to download stock images for?\n")
 
 try:
