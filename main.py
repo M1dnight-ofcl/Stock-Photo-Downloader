@@ -1,11 +1,12 @@
-import pvleopard as pv, tqdm as t, os, shutil as s, scripts.blacklist as blacklist, scripts.fileScan as fs, scripts.spellCheck as sc
+import pvleopard as pv, tqdm as t, os, shutil as s, core.scripts.blacklist as blacklist, core.scripts.fileScan as fs, core.scripts.spellCheck as sc
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.6.2"
+vnum = "1.6.3"
 
-x = open("assets/logo.txt", "r")
+x = open("core/assets/logo.txt", "r")
 print(x.read())
 x.close()
+
 print("\ncurrent version: " + vnum + "\n")
 
 for i in t.tqdm(range(0, 1), desc ="creating 'simple_image_download' object"):
