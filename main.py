@@ -1,7 +1,7 @@
 import pvleopard as pv, tqdm as t, os, shutil as s, core.scripts.blacklist as blacklist, core.scripts.fileScan as fs, core.scripts.spellCheck as sc, random as r
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.7.2"
+vnum = "1.7.3"
 
 x = open("core/assets/logo.txt", "r")
 print(x.read())
@@ -77,18 +77,22 @@ try:
         working = os.listdir("simple_images/" + query)
         for i in range(1,4):
           working.remove(query + "_" + str(i) + ".jpg")
-        for i in range(1, amt):
-          finalFile = str(r.choice(working))
-          s.move("simple_images/" + query + "/" + finalFile, "output/" + finalFile)
-          os.rename("output/" + finalFile, "output/" + query + ".jpg")
+        if not working:
+          print("[ERROR] no img valid")
+        else:
+          for i in range(1, amt):
+            finalFile = str(r.choice(working))
+            s.move("simple_images/" + query + "/" + finalFile, "output/" + finalFile)
+            os.rename("output/" + finalFile, "output/" + query + ".jpg")
         ie = ie + 1
       except Exception as e:
         print("[INFO] " + str(e) + " " + str(ie) + "/" + str(len(all)))
         fs.checkFiles("output")
         ie = ie + 1
-  s.rmtree("simple_images")
-  os.remove("exportAudio.mp3")
-  os.remove("exportedCaption.txt")
+  for i in t.tqdm(range(0, 1), desc = "[INFO] deleting temp files"):
+    s.rmtree("simple_images")
+    os.remove("exportAudio.mp3")
+    os.remove("exportedCaption.txt")
   fs.checkFiles("output")
   print("\n[INFO] script finished\nplease note that the module used downloads 4 google images before it downloads the requested stock photo. the requested photo is the fifth one, skip the others. you may also need to refresh to see the changes.")
 except Exception as e:
