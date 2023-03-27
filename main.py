@@ -1,4 +1,4 @@
-import pvleopard as pv, tqdm as t, os, shutil as s, core.scripts.blacklist as blacklist, core.scripts.fileScan as fs, core.scripts.spellCheck as sc
+import pvleopard as pv, tqdm as t, os, shutil as s, core.scripts.blacklist as blacklist, core.scripts.fileScan as fs, core.scripts.spellCheck as sc, random as r
 from simple_image_download import simple_image_download as simp
 
 vnum = "1.6.5"
@@ -71,9 +71,10 @@ try:
     else:
       try:
         for i in t.tqdm(range(0, 1), desc = "[INFO] downloading '" + query + "' " + str(ie) + "/" + str(len(all))):
-          response().download(query, 5)
-        s.move("simple_images/" + query + "/" + query + "_5.jpg", "output/" + query + "_5.jpg")
-        os.rename("output/" + query + "_5.jpg", "output/" + query + ".jpg")
+          response().download(query, 10)
+        fname = query + "_" + str(r.randint(5, 10)) +".jpg"
+        s.move("simple_images/" + fname, "output/" + fname)
+        os.rename("output/" + fname, "output/" + query + ".jpg")
         fs.checkFiles("output")
         ie = ie + 1
       except Exception as e:
