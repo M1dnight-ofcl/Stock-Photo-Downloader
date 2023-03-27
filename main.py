@@ -1,7 +1,7 @@
 import pvleopard as pv, tqdm as t, os, shutil as s, core.scripts.blacklist as blacklist, core.scripts.fileScan as fs, core.scripts.spellCheck as sc, random as r
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.7.1"
+vnum = "1.7.2"
 
 x = open("core/assets/logo.txt", "r")
 print(x.read())
@@ -10,7 +10,7 @@ x.close()
 print("\ncurrent version: " + vnum + "\n")
 
 for i in t.tqdm(range(0, 1), desc ="creating 'simple_image_download' object"):
-  response = simp.simple_image_download
+  downloader = simp.simple_image_download
 
 try:
   for i in t.tqdm(range(0, 1), desc ="importing 'moviepy.editor' module"):
@@ -72,7 +72,7 @@ try:
     else:
       try:
         for i in t.tqdm(range(0, 1), desc = "[INFO] downloading '" + query + "' " + str(ie) + "/" + str(len(all))):
-          response().download(query, 10)
+          downloader().download(query, 10)
         fs.checkFiles("simple_images/" + query)
         working = os.listdir("simple_images/" + query)
         for i in range(1,4):
