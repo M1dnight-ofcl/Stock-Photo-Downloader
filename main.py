@@ -1,7 +1,7 @@
 import pvleopard as pv, tqdm as t, os, shutil as s, core.scripts.blacklist as blacklist, core.scripts.fileScan as fs, core.scripts.spellCheck as sc
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.6.3"
+vnum = "1.6.4"
 
 x = open("core/assets/logo.txt", "r")
 print(x.read())
@@ -74,9 +74,11 @@ try:
           response().download(query, 5)
         s.move("simple_images/" + query + "/" + query + "_5.jpg", "output/" + query + "_5.jpg")
         os.rename("output/" + query + "_5.jpg", "output/" + query + ".jpg")
+        fs.checkFiles("output")
         ie = ie + 1
       except Exception as e:
         print("[INFO] " + str(e) + " " + str(ie) + "/" + str(len(all)))
+        fs.checkFiles("output")
         ie = ie + 1
   s.rmtree("simple_images")
   os.remove("exportAudio.mp3")
