@@ -1,7 +1,7 @@
 import pvleopard as pv, tqdm as t, os, shutil as s, core.scripts.blacklist as blacklist, core.scripts.fileScan as fs, core.scripts.spellCheck as sc, random as r
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.7"
+vnum = "1.7.1"
 
 x = open("core/assets/logo.txt", "r")
 print(x.read())
@@ -33,6 +33,7 @@ except:
   except:
     print("[INFO] output folder wipe failed, skiping step...")
 ogVid = input("What video what you like to download stock images for?\n")
+amt = 1
 
 try:
   video = mpe.VideoFileClip(ogVid)
@@ -76,9 +77,10 @@ try:
         working = os.listdir("simple_images/" + query)
         for i in range(1,4):
           working.remove(query + "_" + str(i) + ".jpg")
-        finalFile = str(r.choice(working))
-        s.move("simple_images/" + query + "/" + finalFile, "output/" + finalFile)
-        os.rename("output/" + finalFile, "output/" + query + ".jpg")
+        for i in range(1, amt):
+          finalFile = str(r.choice(working))
+          s.move("simple_images/" + query + "/" + finalFile, "output/" + finalFile)
+          os.rename("output/" + finalFile, "output/" + query + ".jpg")
         ie = ie + 1
       except Exception as e:
         print("[INFO] " + str(e) + " " + str(ie) + "/" + str(len(all)))
