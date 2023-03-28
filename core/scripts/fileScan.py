@@ -1,13 +1,17 @@
 from os import listdir, remove
 from PIL import Image
 
-def checkFiles(dir):
+def checkFiles(dir, se):
   for filename in listdir(dir):
     try:
       img = Image.open(dir+ "/" +filename)
       img.verify()
     except (IOError, SyntaxError) as e:
-      print('Corrupted file:', filename, "\n" + str(e))
+      print('Corrupted file:', filename)
+      if se:
+        print(e)
+      else:
+        pass
       remove(dir + "/" + filename)
 
 def verify(dir):
