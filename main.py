@@ -1,7 +1,7 @@
 import pvleopard as pv, tqdm as t, os, shutil as s, core.scripts.blacklist as blacklist, core.scripts.fileScan as fs, core.scripts.spellCheck as sc, random as r
 from simple_image_download import simple_image_download as simp
 
-vnum = "1.8"
+vnum = "1.8.3"
 
 x = open("core/assets/logo.txt", "r")
 print(x.read())
