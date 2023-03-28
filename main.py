@@ -33,11 +33,21 @@ except:
   except:
     print("[INFO] output folder wipe failed, skiping step...")
 ogVid = input("What video what you like to download stock images for?\n")
+
 try:
   os.mkdir("temp")
 except:
   print("[INFO] temp folder exists, this may be due to incorrect shutdown")
 
+try:
+  os.mkdir("output/" + os.path.basename(ogVid))
+except:
+  print("[INFO] script has been run on video before, clearing old dir")
+  os.remove("output/" + os.path.basename(ogVid))
+  os.mkdir("output/" + os.path.basename(ogVid))
+
+fpath = "output/" + os.path.basename(ogVid) + "/"
+  
 try:
   video = mpe.VideoFileClip(ogVid)
   video.audio.write_audiofile("temp/exportAudio.mp3")
@@ -57,12 +67,6 @@ try:
   all = cap.split(" ")
   print("[INFO] split text to array")
   ie = 1
-  try:
-    print("[INFO] wiping downloads folder...")
-    s.rmtree("output/")
-    os.mkdir("output/")
-  except:
-    print("[INFO] downloads folder non-existant, skipping deletion...")
   for rep in all:
     query = rep + " stock photo"
     if rep.capitalize() in blacklist.list:
@@ -78,18 +82,19 @@ try:
         working = os.listdir("simple_images/" + query)
         if working:
           finalFile = str(r.choice(working))
-          s.move("simple_images/" + query + "/" + finalFile, "output/" + finalFile)
-          os.rename("output/" + finalFile, "output/" + str(ie) + "-" + rep + ".jpg")
+          s.move("simple_images/" + query + "/" + finalFile, fpath + finalFile)
+          os.rename(fpath + finalFile, fpath + str(ie) + "-" + rep + ".jpg")
           ie = ie + 1
         elif not working:
           print("[INFO] download failed, this may be due to photoless term")
       except Exception as e:
         print("[INFO] " + str(e) + " " + str(ie) + "/" + str(len(all)))
-        fs.checkFiles("output", False)
+        fs.checkFiles(fpath, False)
         ie = ie + 1
   for i in t.tqdm(range(0, 1), desc = "[INFO] clearing temp files"):
     s.rmtree("simple_images")
     s.rmtree("temp")
-  fs.checkFiles("output", False)
+  fs.checkFiles(fpath, False)
+  print("\nscript finished, check output for results")
 except Exception as e:
   print("[ERROR] ", str(e))
