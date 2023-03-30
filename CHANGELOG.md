@@ -1,5 +1,3 @@
-# v1.7
-- Added image randomizer
-- Added file filter
-- Reorginized files
-- Enhanced fileScan.py
+# v1.8.5
+- Fixed 'Blank Word' bug
+- Fixed 'Reload for Files' bug   
