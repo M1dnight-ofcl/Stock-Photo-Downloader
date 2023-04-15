@@ -1,3 +1,12 @@
 {
-  "files": {}
+  "files": {
+    "mainScript.py": [
+      {
+        "id": "78cf6686-19e0-43c7-9442-9069753221c7",
+        "line": 1,
+        "version": 1361,
+        "index": 0
+      }
+    ]
+  }
 }
