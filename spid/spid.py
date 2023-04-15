@@ -8,7 +8,7 @@ from datetime import datetime
 import spid.scripts.blacklist as bls
 from tkinter.filedialog import askopenfile
 
-vnum = "2.0"
+vnum = "2.1"
 root = tk.Tk()
 blacklist = bls.bl_main
 
@@ -31,13 +31,15 @@ class spid_functions:
       root.destroy()
 
   def main():
-    get = askopenfile(mode='r', filetypes=[('Video Files', '*.mp4 *.mpeg .mov'), ('All Files', "*.")])
-    try:
-      with get as file:
-        global ogVid
-        ogVid = os.path.relpath(file.name)
-    except:
-      print("[INFO] file upload denied")
+    while True:
+      get = askopenfile(mode='r', filetypes=[('Video Files', '*.mp4 *.mpeg *.mov'), ('All Files', "*.")])
+      try:
+        with get as file:
+          global ogVid
+          ogVid = os.path.relpath(file.name)
+          break
+      except:
+        print("[INFO] file upload denied")
     spid_main.scriptRunner()
 
 class spid_main:
@@ -145,8 +147,16 @@ class spid_main:
 print(open("spid/assets/logo.txt", "r").read())
 print("\ncurrent version: " + vnum + "\nM1dnightDev (c) 2023\n")
 
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+
+window_width = int(round(screen_width/1.5))
+window_height = int(round(screen_height/2))
+
+window_dimensions = str(window_width) + "x" + str(window_height)
+
 root.title('SPID - Stock Photo Image Downloader')
-root.geometry('400x200') 
+root.geometry(window_dimensions) 
 
 photo = tk.PhotoImage(file = r"spid/assets/logo.png")
 photo = photo.subsample(3, 3)
