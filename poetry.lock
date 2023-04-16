@@ -166,6 +166,28 @@ ssh = ["bcrypt (>=3.1.5)"]
 test = ["pytest (>=6.2.0)", "pytest-benchmark", "pytest-cov", "pytest-subtests", "pytest-xdist", "pretend", "iso8601", "pytz", "hypothesis (>=1.11.4,!=3.79.2)"]
 
 [[package]]
+name = "customtkinter"
+version = "5.1.2"
+description = "Create modern looking GUIs with Python"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+darkdetect = "*"
+
+[[package]]
+name = "darkdetect"
+version = "0.8.0"
+description = "Detect OS Dark Mode from Python"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+macos-listener = ["pyobjc-framework-cocoa"]
+
+[[package]]
 name = "debugpy"
 version = "1.6.5"
 description = "An implementation of the Debug Adapter Protocol for Python"
@@ -372,6 +394,25 @@ description = "Fundamental package for array computing in Python"
 category = "main"
 optional = false
 python-versions = ">=3.8"
+
+[[package]]
+name = "openai"
+version = "0.27.4"
+description = "Python client library for the OpenAI API"
+category = "main"
+optional = false
+python-versions = ">=3.7.1"
+
+[package.dependencies]
+aiohttp = "*"
+requests = ">=2.20"
+tqdm = "*"
+
+[package.extras]
+datalib = ["numpy", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)", "openpyxl (>=3.0.7)"]
+dev = ["black (>=21.6b0,<22.0.0)", "pytest (>=6.0.0,<7.0.0)", "pytest-asyncio", "pytest-mock"]
+embeddings = ["scikit-learn (>=1.0.2)", "tenacity (>=8.0.1)", "matplotlib", "plotly", "numpy", "scipy", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)", "openpyxl (>=3.0.7)"]
+wandb = ["wandb", "numpy", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)", "openpyxl (>=3.0.7)"]
 
 [[package]]
 name = "packaging"
@@ -759,7 +800,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10.0,<3.11"
-content-hash = "34c4c3668080b867ca5dba50687680faa698b3f608bade962758a7821b9ee443"
+content-hash = "623484fe615d3be477f1090d0389b4df3fefa4de5824bd03910ae382e1d04c43"
 
 [metadata.files]
 aiohttp = []
@@ -775,6 +816,8 @@ click = []
 cloudscraper = []
 colorama = []
 cryptography = []
+customtkinter = []
+darkdetect = []
 debugpy = []
 decorator = []
 ffmpeg = []
@@ -793,6 +836,7 @@ markupsafe = []
 moviepy = []
 multidict = []
 numpy = []
+openai = []
 packaging = []
 parso = []
 passlib = []

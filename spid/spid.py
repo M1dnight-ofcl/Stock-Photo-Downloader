@@ -1,5 +1,5 @@
 # import modules
-import pvleopard as pv, tqdm as t, os, shutil as s, random as r, tkinter as tk, sys
+import pvleopard as pv, tqdm as t, os, shutil as s, random as r, customtkinter as tk, sys, tkinter as tk2
 # import local
 import spid.scripts.fileScan as fs, spid.scripts.spellCheck as sc, spid.spid as m
 # import classes/functions from  modules
@@ -7,13 +7,18 @@ from simple_image_download import simple_image_download as simp
 from datetime import datetime
 import spid.scripts.blacklist as bls
 from tkinter.filedialog import askopenfile
+from PIL import ImageOps, Image
 
-vnum = "2.1"
-root = tk.Tk()
+tk.set_appearance_mode("dark")
+tk.set_default_color_theme("dark-blue")
+
+vnum = "2.2"
+root = tk.CTk()
+frame = tk.CTkFrame(master=root)
 blacklist = bls.bl_main
 
 class spid_functions:
-  stxt = tk.Label(root, text = "Script has begun initializing, this may take a minute.")
+  stxt = tk.CTkLabel(root, text = "Script has begun initializing, this may take a minute.")
   def loadUi():
     root.protocol("WM_DELETE_WINDOW", spid_functions.on_closing)
     logo.pack()
@@ -27,7 +32,7 @@ class spid_functions:
     root.destroy()
     
   def on_closing():
-    if tk.messagebox.askokcancel("Confirmation", "Do you want to quit?"):
+    if tk2.messagebox.askokcancel("Quit Confirmation", "Do you want to quit?"):
       root.destroy()
 
   def main():
@@ -130,7 +135,7 @@ class spid_main:
       print("\nscript finished, check output for results")
       log.write("\n\nscript finished with no issue\n")
       log.close()
-      tk.Label(root, text = "Script has finished! Check the output folder").pack()
+      tk.CTkLabel(root, text = "Script has finished! Check the output folder").pack()
       root.protocol("WM_DELETE_WINDOW", spid_functions.disablecf)
     except Exception as e:
       exception_type, exception_object, exception_traceback = sys.exc_info()
@@ -150,22 +155,29 @@ print("\ncurrent version: " + vnum + "\nM1dnightDev (c) 2023\n")
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 
-window_width = int(round(screen_width/1.5))
-window_height = int(round(screen_height/2))
+downscale_factor_width = 1.5
+downscale_factor_height = 2
+
+window_width = int(round(screen_width/downscale_factor_width))
+window_height = int(round(screen_height/downscale_factor_height))
 
 window_dimensions = str(window_width) + "x" + str(window_height)
 
 root.title('SPID - Stock Photo Image Downloader')
 root.geometry(window_dimensions) 
 
-photo = tk.PhotoImage(file = r"spid/assets/logo.png")
-photo = photo.subsample(3, 3)
-logo = tk.Label(root, text = '', image = photo)
+photo = Image.open("spid/assets/logo.png")
+logo_image_source_aspect_ratio = photo.width/photo.height
+logo_width = photo.width/logo_image_source_aspect_ratio
+logo_height = photo.height/logo_image_source_aspect_ratio
+logoImg = tk.CTkImage(photo, size=(logo_width, logo_height))
+logo = tk.CTkLabel(frame, text = '', image = logoImg)
 
-btn1 = tk.Button(root,
+btn1 = tk.CTkButton(frame,
 	text = 'Upload Video',
 	command = spid_functions.main)
 
+frame.pack(pady=20, padx=20, fill="both", expand=True)
 logo.pack()
 btn1.pack()
 
