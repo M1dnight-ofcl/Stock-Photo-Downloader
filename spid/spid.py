@@ -12,7 +12,7 @@ from PIL import ImageOps, Image
 tk.set_appearance_mode("dark")
 tk.set_default_color_theme("dark-blue")
 
-vnum = "2.2.2"
+vnum = "2.2.3"
 root = tk.CTk()
 frame = tk.CTkFrame(master=root)
 blacklist = bls.bl_main
