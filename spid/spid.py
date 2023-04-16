@@ -12,7 +12,7 @@ from PIL import ImageOps, Image
 tk.set_appearance_mode("dark")
 tk.set_default_color_theme("dark-blue")
 
-vnum = "2.2"
+vnum = "2.2.2"
 root = tk.CTk()
 frame = tk.CTkFrame(master=root)
 blacklist = bls.bl_main
@@ -30,10 +30,12 @@ class spid_functions:
 
   def disablecf():
     root.destroy()
+    sys.exit()
     
   def on_closing():
     if tk2.messagebox.askokcancel("Quit Confirmation", "Do you want to quit?"):
       root.destroy()
+      sys.exit()
 
   def main():
     while True:
@@ -135,15 +137,19 @@ class spid_main:
       print("\nscript finished, check output for results")
       log.write("\n\nscript finished with no issue\n")
       log.close()
-      tk.CTkLabel(root, text = "Script has finished! Check the output folder").pack()
+      tk.CTkLabel(frame, text = "Script has finished! Check the output folder").pack()
       root.protocol("WM_DELETE_WINDOW", spid_functions.disablecf)
+      sys.exit()
     except Exception as e:
       exception_type, exception_object, exception_traceback = sys.exc_info()
       ln = exception_traceback.tb_lineno
-      print("[ERROR] ", str(e), "\nline:", ln)
+      errorMsg = "[ERROR] " + str(e) + "\nline:" + ln
+      print(errorMsg)
       log.write("\n\nscript finished due to error:\n" + str(e))
       log.close()
       root.protocol("WM_DELETE_WINDOW", spid_functions.disablecf)
+      tk2.messagebox.showerror('SPID: Error', 'An Error Has Occured! Details:\n' + errorMsg)
+      sys.exit()
 
   def scriptRunner():
     spid_functions.loadUi()
