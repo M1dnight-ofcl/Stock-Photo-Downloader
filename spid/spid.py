@@ -1,18 +1,18 @@
 # import modules
-import pvleopard as pv, tqdm as t, os, shutil as s, random as r, customtkinter as tk, sys, tkinter as tk2
+import pvleopard as pv, tqdm as t, os, shutil as s, random as r, customtkinter as tk, sys, tkinter as tk2, time
 # import local
-import spid.scripts.fileScan as fs, spid.scripts.spellCheck as sc, spid.spid as m
+import spid.scripts.fileScan as fs, spid.scripts.spellCheck as sc
 # import classes/functions from  modules
 from simple_image_download import simple_image_download as simp
 from datetime import datetime
 import spid.scripts.blacklist as bls
 from tkinter.filedialog import askopenfile
-from PIL import ImageOps, Image
+from PIL import Image
 
 tk.set_appearance_mode("dark")
 tk.set_default_color_theme("dark-blue")
 
-vnum = "2.2.3"
+vnum = "2.2.4"
 root = tk.CTk()
 frame = tk.CTkFrame(master=root)
 blacklist = bls.bl_main
@@ -138,12 +138,14 @@ class spid_main:
       log.write("\n\nscript finished with no issue\n")
       log.close()
       tk.CTkLabel(frame, text = "Script has finished! Check the output folder").pack()
+      tk.CTkLabel(frame, text="This window will close in 3 seconds").pack()
       root.protocol("WM_DELETE_WINDOW", spid_functions.disablecf)
+      time.sleep(3)
       sys.exit()
     except Exception as e:
       exception_type, exception_object, exception_traceback = sys.exc_info()
       ln = exception_traceback.tb_lineno
-      errorMsg = "[ERROR] " + str(e) + "\nline:" + ln
+      errorMsg = "[ERROR] " + str(e) + "\nline:" + str(ln)
       print(errorMsg)
       log.write("\n\nscript finished due to error:\n" + str(e))
       log.close()
@@ -172,7 +174,7 @@ window_dimensions = str(window_width) + "x" + str(window_height)
 root.title('SPID - Stock Photo Image Downloader')
 root.geometry(window_dimensions) 
 
-photo = Image.open("spid/assets/logo.png")
+photo = Image.open("spid/assets/logo-dm.png")
 logo_image_source_aspect_ratio = photo.width/photo.height
 logo_width = photo.width/logo_image_source_aspect_ratio
 logo_height = photo.height/logo_image_source_aspect_ratio
